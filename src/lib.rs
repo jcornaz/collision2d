@@ -15,3 +15,21 @@ mod aabb;
 
 #[cfg(feature = "aabb")]
 pub use aabb::Aabb;
+
+/// Trait implemented by shapes that can be checked for collisions with shapes of type `S`
+pub trait Collides<S = Self> {
+    /// Returns true if `self` overlaps `other`
+    #[must_use]
+    fn collides(&self, other: &S) -> bool;
+
+    /// Returns true if `self` collides with any `others`
+    ///
+    /// If the `others` iterator is empty, this function returns `false`
+    #[must_use]
+    fn collides_any<'a>(&self, others: impl IntoIterator<Item = &'a S>) -> bool
+    where
+        S: 'a,
+    {
+        others.into_iter().any(|other| self.collides(other))
+    }
+}
