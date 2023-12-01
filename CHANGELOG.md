@@ -7,6 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+
+## [0.1.1] - 2023-12-01
+
 ### Documentation
 
 * Better document required feature flags on docs.rs
@@ -19,5 +22,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 * Axis-Aligned Bounding Box (`Aabb`)
 * Support `no_std` target (require to disable default features)
 
-[Unreleased]: https://github.com/jcornaz/beancount_parser_2/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/jcornaz/beancount_parser_2/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/jcornaz/beancount_parser_2/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/jcornaz/collision2d/compare/...v0.1.0
