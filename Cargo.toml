@@ -1,0 +1,33 @@
+[package]
+name = "collision2d"
+version = "0.0.0"
+license = "Unlicense"
+authors = ["Jonathan Cornaz"]
+edition = "2021"
+rust-version = "1.74"
+repository = "https://github.com/jcornaz/collision2d"
+description = "A simple 2d collision detection library "
+categories = ["no-std", "game-development"]
+keywords = ["no_std", "gamedev", "collision", "2d", "geometry"]
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
+[dependencies]
+
+[dev-dependencies]
+
+[lints.rust]
+future_incompatible = "deny"
+nonstandard_style = "deny"
+unsafe_code = "deny"
+private_interfaces = "warn"
+private_bounds = "warn"
+rust_2018_idioms = "warn"
+missing_docs = "warn"
+
+[lints.clippy]
+exhaustive_enums = "warn"
+exhaustive_structs = "warn"
+pedantic = "warn"
