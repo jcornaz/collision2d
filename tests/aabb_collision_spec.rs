@@ -56,3 +56,27 @@ fn should_collide(
 fn collides_any_returns_false_for_empty_iter() {
     assert!(!Aabb::from_min_max([0., 0.], [1., 1.]).collides_any([]));
 }
+
+#[rstest]
+fn max_penetration_returns_the_bigger_vector() {
+    let [x, y] = Aabb::from_min_max([0., 0.], [1., 1.])
+        .max_penetration([
+            &Aabb::from_min_max([0.5, 0.], [1.5, 1.]),
+            &Aabb::from_min_max([2., 2.], [3., 3.]),
+        ])
+        .unwrap();
+    assert!((x.abs() - 0.5).abs() < f32::EPSILON);
+    assert!(y.abs() < f32::EPSILON);
+}
+
+#[rstest]
+fn max_penetration_returns_the_bigger_vector_with_self() {
+    let [x, y] = Aabb::from_min_max([0., 0.], [1., 1.])
+        .max_penetration([
+            &Aabb::from_min_max([0., 0.], [1., 1.]),
+            &Aabb::from_min_max([0.5, 0.], [1.5, 1.]),
+            &Aabb::from_min_max([2., 2.], [3., 3.]),
+        ])
+        .unwrap();
+    assert!((x.abs() + y.abs() - 1.0).abs() < f32::EPSILON);
+}
