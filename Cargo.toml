@@ -17,10 +17,14 @@ rustdoc-args = ["--cfg", "docsrs"]
 [features]
 default = ["std"]
 std = []
+libm = ["dep:libm"]
+aabb = []
 
 [dependencies]
+libm = { version = "0.2.8", default-features = false, optional = true }
 
 [dev-dependencies]
+rstest = { version = "0.18.2", default-features = false }
 
 [lints.rust]
 future_incompatible = "deny"

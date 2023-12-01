@@ -7,3 +7,11 @@
 //! # Features
 //!
 //! `std`: *(enabled by default)* enable use of the standard library. Must be disabled for `no_std` crates.
+//! `aabb`: *(enabled by default)* Axis-Aligned Bounding Box (`Aabb`) shape
+//! `libm`: Use `libm` for math. This is notably necessary for some features to work on `no_std`
+
+#[cfg(feature = "aabb")]
+mod aabb;
+
+#[cfg(feature = "aabb")]
+pub use aabb::Aabb;
