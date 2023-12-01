@@ -7,5 +7,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+* Support `no_std` target (require to disable default features)
 
 [Unreleased]: https://github.com/jcornaz/collision2d/compare/...HEAD
