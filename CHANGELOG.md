@@ -7,7 +7,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-* `Collides` trait
+* `Collides` trait to check for collision
+* `Penetration` trait get penetration vector
 * Axis-Aligned Bounding Box (`Aabb`)
 * Support `no_std` target (require to disable default features)
 

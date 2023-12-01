@@ -1,8 +1,8 @@
-#![cfg(all(feature = "aabb", feature = "std"))]
+#![cfg(feature = "aabb")]
 
 use rstest::rstest;
 
-use collision2d::{Aabb, Collides};
+use collision2d::{Aabb, Collides, Penetration};
 
 #[rstest]
 #[case(Aabb::from_min_max([0., 0.], [1., 1.]), Aabb::from_min_max([2., 0.], [3., 1.]))]
@@ -13,14 +13,15 @@ use collision2d::{Aabb, Collides};
 fn should_not_collide(#[case] shape1: Aabb, #[case] shape2: Aabb) {
     assert!(!shape1.collides(&shape2));
     assert!(!shape1.collides_any([&shape2]));
-    assert_eq!(shape1.penetration(shape2), None);
+    assert_eq!(shape1.penetration(&shape2), None);
+    assert_eq!(shape1.max_penetration([&shape2]), None);
 }
 
 #[test]
 fn should_collide_with_self() {
     let shape = Aabb::from_min_max([0., 0.], [1., 1.]);
     assert!(shape.collides(&shape));
-    let [x, y] = shape.penetration(shape).unwrap();
+    let [x, y] = shape.penetration(&shape).unwrap();
     assert!((x.abs() + y.abs() - 1.).abs() < f32::EPSILON);
 }
 
@@ -39,7 +40,7 @@ fn should_collide(
     assert!(shape1.collides(&shape2));
     assert!(shape1.collides_any([&shape2]));
     let actual_penetration = shape1
-        .penetration(shape2)
+        .penetration(&shape2)
         .expect("the shape are not penetrating");
     assert!(
         (actual_penetration[0] - expected_penetration[0]).abs() <= f32::EPSILON,

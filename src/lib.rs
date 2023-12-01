@@ -33,3 +33,50 @@ pub trait Collides<S = Self> {
         others.into_iter().any(|other| self.collides(other))
     }
 }
+
+/// Trait implemented by shapes that can check for penetration into other shapes of type `S`
+pub trait Penetration<S = Self> {
+    /// Returns by how much `self` should be moved in order to resolve penetration with `other`
+    ///
+    /// Returns `None` if the two shapes are not collided
+    #[must_use]
+    fn penetration(&self, other: &S) -> Option<[f32; 2]>;
+
+    /// Returns the maximum penetration of `self` against the `others` shapes.
+    ///
+    /// Returns `None` if `self` does not penetrate any of the `others` shape.
+    #[must_use]
+    fn max_penetration<'a>(&self, others: impl IntoIterator<Item = &'a S>) -> Option<[f32; 2]>
+    where
+        S: 'a,
+    {
+        let mut max_magnitude = f32::MIN;
+        let mut max = None;
+        others
+            .into_iter()
+            .filter_map(move |other| self.penetration(other))
+            .for_each(|p| {
+                let magnitude = abs(p[0]) + abs(p[1]);
+                if magnitude > max_magnitude {
+                    max_magnitude = magnitude;
+                    max = Some(p);
+                }
+            });
+        max
+    }
+}
+
+#[cfg(feature = "std")]
+fn abs(v: f32) -> f32 {
+    v.abs()
+}
+
+#[cfg(all(not(feature = "std"), feature = "libm"))]
+fn abs(v: f32) -> f32 {
+    libm::fabsf(v)
+}
+
+#[cfg(all(not(feature = "std"), not(feature = "libm")))]
+fn abs(v: f32) -> f32 {
+    f32::from_bits(v.to_bits() & 0x7fff_ffff)
+}
