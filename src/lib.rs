@@ -1,14 +1,14 @@
 #![cfg_attr(docsrs, feature(doc_auto_cfg))]
 #![cfg_attr(not(feature = "std"), no_std)]
 
-//! A simple 2d collision detection library supporting simple primitive shapes only,
+//! A simple 2D collision detection library supporting simple primitive shapes only,
 //! and that is suitable for development on `no_std` targets.
 //!
 //! # Features
 //!
-//! `std`: *(enabled by default)* enable use of the standard library. Must be disabled for `no_std` crates.
-//! `aabb`: *(enabled by default)* Axis-Aligned Bounding Box (`Aabb`) shape
-//! `libm`: Use `libm` for math. This is notably necessary for some features to work on `no_std`
+//! * `std`: *(enabled by default)* enable use of the standard library. Must be disabled for `no_std` crates.
+//! * `aabb`: *(enabled by default)* Axis-Aligned Bounding Box (`Aabb`) shape
+//! * `libm`: Use `libm` for math. This is notably necessary for some features to work on `no_std`
 
 #[cfg(feature = "aabb")]
 mod aabb;
