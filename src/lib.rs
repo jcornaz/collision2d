@@ -13,6 +13,8 @@
 #[cfg(feature = "aabb")]
 mod aabb;
 
+use core::borrow::Borrow;
+
 #[cfg(feature = "aabb")]
 pub use aabb::Aabb;
 
@@ -20,15 +22,15 @@ pub use aabb::Aabb;
 pub trait Collides<S = Self> {
     /// Returns true if `self` overlaps `other`
     #[must_use]
-    fn collides(&self, other: &S) -> bool;
+    fn collides(&self, other: impl Borrow<S>) -> bool;
 
     /// Returns true if `self` collides with any `others`
     ///
     /// If the `others` iterator is empty, this function returns `false`
     #[must_use]
-    fn collides_any<'a>(&self, others: impl IntoIterator<Item = &'a S>) -> bool
+    fn collides_any<'a, T>(&self, others: impl IntoIterator<Item = T>) -> bool
     where
-        S: 'a,
+        T: Borrow<S> + 'a,
     {
         others.into_iter().any(|other| self.collides(other))
     }

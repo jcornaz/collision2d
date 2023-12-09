@@ -1,3 +1,5 @@
+use core::borrow::Borrow;
+
 use crate::{abs, Collides, Penetration};
 
 /// Axis-Aligned Bounding Box
@@ -41,8 +43,9 @@ impl Aabb {
 }
 
 impl Collides for Aabb {
-    fn collides(&self, other: &Aabb) -> bool {
-        self.x.collides(&other.x) && self.y.collides(&other.y)
+    fn collides(&self, other: impl Borrow<Aabb>) -> bool {
+        let other = other.borrow();
+        self.x.collides(other.x) && self.y.collides(other.y)
     }
 }
 
@@ -76,7 +79,8 @@ impl Range {
 }
 
 impl Collides for Range {
-    fn collides(&self, other: &Self) -> bool {
+    fn collides(&self, other: impl Borrow<Self>) -> bool {
+        let other = other.borrow();
         self.max > other.min && self.min < other.max
     }
 }
