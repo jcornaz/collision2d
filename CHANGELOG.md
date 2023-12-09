@@ -10,10 +10,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Breaking change
 
-* change `Collides` trait to take `Borrow<S>` instead of `&S`
+* change `Collides` and `Penetrate` traits to take `Borrow<S>` instead of `&S`
 
-By taking implementation of `Borrow` the users can decide whether or not to pass shapes by reference
-or with ownership, giving them more flexibility and notably makes possible to use iterators
+Now users can decide whether to pass shapes by reference
+or with ownership, which gives more flexibility and notably makes possible to use iterators
 that build shapes on the fly.
 
 

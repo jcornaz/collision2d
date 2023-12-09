@@ -50,7 +50,8 @@ impl Collides for Aabb {
 }
 
 impl Penetration for Aabb {
-    fn penetration(&self, other: &Self) -> Option<[f32; 2]> {
+    fn penetration(&self, other: impl Borrow<Self>) -> Option<[f32; 2]> {
+        let other = other.borrow();
         let x = self.x.penetration(other.x)?;
         let y = self.y.penetration(other.y)?;
         Some(if abs(x) < abs(y) { [x, 0.] } else { [0., y] })

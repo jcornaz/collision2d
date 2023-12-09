@@ -42,15 +42,15 @@ pub trait Penetration<S = Self> {
     ///
     /// Returns `None` if the two shapes are not collided
     #[must_use]
-    fn penetration(&self, other: &S) -> Option<[f32; 2]>;
+    fn penetration(&self, other: impl Borrow<S>) -> Option<[f32; 2]>;
 
     /// Returns the maximum penetration of `self` against the `others` shapes.
     ///
     /// Returns `None` if `self` does not penetrate any of the `others` shape.
     #[must_use]
-    fn max_penetration<'a>(&self, others: impl IntoIterator<Item = &'a S>) -> Option<[f32; 2]>
+    fn max_penetration<'a, T>(&self, others: impl IntoIterator<Item = T>) -> Option<[f32; 2]>
     where
-        S: 'a,
+        T: Borrow<S> + 'a,
     {
         let mut max_magnitude = f32::MIN;
         let mut max = None;
