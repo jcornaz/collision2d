@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 
+## [0.2.0] - 2023-12-09
+
+
 ### Breaking change
 
 * change `Collides` and `Penetrate` traits to take `Borrow<S>` instead of `&S`
@@ -42,7 +45,8 @@ that build shapes on the fly.
 * Axis-Aligned Bounding Box (`Aabb`)
 * Support `no_std` target (require to disable default features)
 
-[Unreleased]: https://github.com/jcornaz/beancount_parser_2/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/jcornaz/beancount_parser_2/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/jcornaz/beancount_parser_2/compare/v0.1.2...v0.2.0
 [0.1.2]: https://github.com/jcornaz/beancount_parser_2/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/jcornaz/beancount_parser_2/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/jcornaz/collision2d/compare/...v0.1.0
