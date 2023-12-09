@@ -20,6 +20,24 @@ impl Aabb {
         let y = Range::from_min_max(min[1], max[1]);
         Self { x, y }
     }
+
+    /// Returns the minimum point of the shape
+    ///
+    /// In a typical screen-space coordinate system (the x-axis points to the right, and the y-axis points down)
+    /// this would be the "top-left"
+    #[must_use]
+    pub fn min(&self) -> [f32; 2] {
+        [self.x.min, self.y.min]
+    }
+
+    /// Returns the maximum point of the shape
+    ///
+    /// In a typical screen-space coordinate system (the x-axis points to the right, and the y-axis points down)
+    /// this would be the "bottom-right"
+    #[must_use]
+    pub fn max(&self) -> [f32; 2] {
+        [self.x.max, self.y.max]
+    }
 }
 
 impl Collides for Aabb {
@@ -77,5 +95,13 @@ mod tests {
     fn range_should_penetrate_self() {
         let range = Range::from_min_max(0., 1.);
         assert_eq!(range.penetration(range).map(abs), Some(1.0));
+    }
+
+    #[test]
+    #[allow(clippy::float_cmp)]
+    fn can_get_min_max_from_aabb() {
+        let aabb = Aabb::from_min_max([1., 2.], [3., 4.]);
+        assert_eq!(aabb.min(), [1., 2.]);
+        assert_eq!(aabb.max(), [3., 4.]);
     }
 }

@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+* `aabb`: `Aabb::min` and `Aabb::max` getters
+
 ### Documentation
 
 * Improve formatting of the feature list on docs.rs
