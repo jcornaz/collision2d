@@ -10,6 +10,9 @@ description = "A simple 2d collision detection library "
 categories = ["no-std", "game-development"]
 keywords = ["no_std", "gamedev", "collision", "2d", "geometry"]
 
+[badges.maintenance]
+status = "actively-developed"
+
 [package.metadata.docs.rs]
 all-features = true
 rustdoc-args = ["--cfg", "docsrs"]
