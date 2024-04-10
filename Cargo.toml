@@ -27,7 +27,7 @@ aabb = []
 libm = { version = "0.2.8", default-features = false, optional = true }
 
 [dev-dependencies]
-rstest = { version = "0.18.2", default-features = false }
+rstest = { version = "0.19.0", default-features = false }
 
 [lints.rust]
 future_incompatible = "deny"
