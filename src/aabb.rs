@@ -67,6 +67,12 @@ impl Aabb {
     pub fn max(&self) -> [f32; 2] {
         [self.x.max, self.y.max]
     }
+
+    /// Returs the size of the shape
+    #[must_use]
+    pub fn size(&self) -> [f32; 2] {
+        [self.x.max - self.x.min, self.y.max - self.y.min]
+    }
 }
 
 impl Collides for Aabb {
@@ -143,10 +149,13 @@ mod tests {
     }
 
     #[test]
+    #[allow(clippy::float_cmp)]
     fn can_build_from_top_left_and_size() {
         let from_min_max = Aabb::from_min_max([1., 2.], [3., 5.]);
         let from_rect = Aabb::from_top_left_and_size([1., 2.], [2., 3.]);
         assert_eq!(from_min_max, from_rect);
+        assert_eq!(from_rect.size(), [2., 3.]);
+        assert_eq!(from_min_max.size(), [2., 3.]);
     }
 
     #[test]
