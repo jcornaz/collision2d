@@ -1,6 +1,6 @@
 [package]
 name = "collision2d"
-version = "0.2.0"
+version = "0.2.1"
 license = "Unlicense"
 authors = ["Jonathan Cornaz"]
 edition = "2021"
