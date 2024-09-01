@@ -36,6 +36,20 @@ impl Aabb {
         Self { x, y }
     }
 
+    /// Move the shape by the given offset
+    pub fn offset(&mut self, offset: impl Into<[f32; 2]>) {
+        let [dx, dy] = offset.into();
+        self.x.offset(dx);
+        self.y.offset(dy);
+    }
+
+    /// Returned shape after appliying the offset
+    #[must_use]
+    pub fn with_offset(mut self, offset: impl Into<[f32; 2]>) -> Self {
+        self.offset(offset);
+        self
+    }
+
     /// Returns the minimum point of the shape
     ///
     /// In a typical screen-space coordinate system (the x-axis points to the right, and the y-axis points down)
@@ -78,7 +92,7 @@ struct Range {
 }
 
 impl Range {
-    pub fn from_min_max(min: f32, max: f32) -> Self {
+    fn from_min_max(min: f32, max: f32) -> Self {
         Self {
             min: min.min(max),
             max: min.max(max),
@@ -89,6 +103,11 @@ impl Range {
         let p1 = Some(other.min - self.max).filter(|p| *p < 0.)?;
         let p2 = Some(other.max - self.min).filter(|p| *p > 0.)?;
         Some(if abs(p1) < abs(p2) { p1 } else { p2 })
+    }
+
+    fn offset(&mut self, offset: f32) {
+        self.min += offset;
+        self.max += offset;
     }
 }
 
@@ -135,5 +154,13 @@ mod tests {
         let from_min_max = Aabb::from_min_max([1., 2.], [3., 5.]);
         let from_rect = Aabb::from_top_left_and_size([3., 5.], [-2., -3.]);
         assert_eq!(from_min_max, from_rect);
+    }
+
+    #[test]
+    #[allow(clippy::float_cmp)]
+    fn can_offset_shape() {
+        let aabb = Aabb::from_min_max([1., 2.], [3., 4.]).with_offset([5.0, 6.0]);
+        assert_eq!(aabb.min(), [6., 8.]);
+        assert_eq!(aabb.max(), [8., 10.]);
     }
 }
