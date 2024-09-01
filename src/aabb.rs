@@ -23,6 +23,19 @@ impl Aabb {
         Self { x, y }
     }
 
+    /// Create from `top_left` and `size` of the rectangle
+    #[must_use]
+    pub fn from_top_left_and_size(
+        top_left: impl Into<[f32; 2]>,
+        size: impl Into<[f32; 2]>,
+    ) -> Self {
+        let [x, y] = top_left.into();
+        let [w, h] = size.into();
+        let x = Range::from_min_max(x, x + w);
+        let y = Range::from_min_max(y, y + h);
+        Self { x, y }
+    }
+
     /// Returns the minimum point of the shape
     ///
     /// In a typical screen-space coordinate system (the x-axis points to the right, and the y-axis points down)
@@ -108,5 +121,19 @@ mod tests {
         let aabb = Aabb::from_min_max([1., 2.], [3., 4.]);
         assert_eq!(aabb.min(), [1., 2.]);
         assert_eq!(aabb.max(), [3., 4.]);
+    }
+
+    #[test]
+    fn can_build_from_top_left_and_size() {
+        let from_min_max = Aabb::from_min_max([1., 2.], [3., 5.]);
+        let from_rect = Aabb::from_top_left_and_size([1., 2.], [2., 3.]);
+        assert_eq!(from_min_max, from_rect);
+    }
+
+    #[test]
+    fn can_build_from_top_left_and_negative_size() {
+        let from_min_max = Aabb::from_min_max([1., 2.], [3., 5.]);
+        let from_rect = Aabb::from_top_left_and_size([3., 5.], [-2., -3.]);
+        assert_eq!(from_min_max, from_rect);
     }
 }
