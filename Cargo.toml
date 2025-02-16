@@ -4,7 +4,7 @@ version = "0.2.2"
 license = "Unlicense"
 authors = ["Jonathan Cornaz"]
 edition = "2021"
-rust-version = "1.74"
+rust-version = "1.60"
 repository = "https://github.com/jcornaz/collision2d"
 description = "A simple 2d collision detection library "
 categories = ["no-std", "game-development"]
@@ -24,10 +24,10 @@ libm = ["dep:libm"]
 aabb = []
 
 [dependencies]
-libm = { version = "0.2.8", default-features = false, optional = true }
+libm = { version = "0.2", default-features = false, optional = true }
 
 [dev-dependencies]
-rstest = { version = "0.23.0", default-features = false }
+rstest = { version = "0.23", default-features = false }
 
 [lints.rust]
 unsafe_code = "deny"

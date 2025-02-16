@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Dependencies
+
+* Lower minium versions of dependencies
+* Lower MSRV to 1.60
 
 ## [0.2.2] - 2024-09-01
 
