@@ -7,6 +7,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+
+## [0.2.3] - 2025-02-16
+
 ### Dependencies
 
 * Lower minium versions of dependencies
@@ -65,7 +68,8 @@ that build shapes on the fly.
 * Axis-Aligned Bounding Box (`Aabb`)
 * Support `no_std` target (require to disable default features)
 
-[Unreleased]: https://github.com/jcornaz/beancount_parser_2/compare/v0.2.2...HEAD
+[Unreleased]: https://github.com/jcornaz/beancount_parser_2/compare/v0.2.3...HEAD
+[0.2.3]: https://github.com/jcornaz/beancount_parser_2/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/jcornaz/beancount_parser_2/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/jcornaz/beancount_parser_2/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/jcornaz/beancount_parser_2/compare/v0.1.2...v0.2.0
