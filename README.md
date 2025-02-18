@@ -1,9 +1,10 @@
 # collision2d
 
-![rustc](https://img.shields.io/badge/rustc-1.74+-blue?logo=rust)
+![rustc](https://img.shields.io/badge/rustc-1.60+-blue?logo=rust)
 [![License](https://img.shields.io/crates/l/collision2d)](#Unlicense)
 [![Crates.io](https://img.shields.io/crates/v/collision2d)](https://crates.io/crates/collision2d)
 [![Docs](https://docs.rs/collision2d/badge.svg)](https://docs.rs/collision2d)
+![Maintenance](https://img.shields.io/maintenance/passively/2025)
 
 A simple 2d collision detection library supporting simple primitive shapes only, 
 and that is suitable for development on `no_std` targets.
@@ -19,7 +20,7 @@ That being said, I also welcome suggestions and contributions.
 
 ## MSRV
 
-The minimum supported rust version is currently `1.74`.
+The minimum supported rust version is currently `1.60`.
 
 It will be updated when required, and that will not be considered a breaking change (it can happen in a minor version).
 
